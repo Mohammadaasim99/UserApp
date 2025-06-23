@@ -1,0 +1,73 @@
+.update-user-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.3s ease-out;
+
+  h2 {
+    margin: 0 0 1.5rem 0;
+    color: #3f51b5;
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  /* Styles for the embedded user-form component */
+  app-user-form {
+    display: block;
+    margin-top: 1rem;
+
+    /* Override form card padding when inside update form */
+    .form-card {
+      padding: 0;
+      box-shadow: none;
+    }
+
+    /* Style the disabled email field differently */
+    .mat-form-field-disabled {
+      .mat-form-field-outline {
+        background-color: #fafafa;
+      }
+      .mat-input-element {
+        color: rgba(0, 0, 0, 0.87);
+      }
+    }
+  }
+}
+
+/* Animation for smooth appearance */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .update-user-container {
+    padding: 1rem;
+    margin: 1rem;
+    box-shadow: none;
+    background: transparent;
+
+    h2 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    app-user-form {
+      .form-card {
+        padding: 0;
+      }
+    }
+  }
+}

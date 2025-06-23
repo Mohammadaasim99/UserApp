@@ -1,0 +1,155 @@
+/* Main container styling */
+.create-user-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+
+  h2 {
+     margin: 0 0 1.5rem 0;
+    color: #3f51b5;
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e0e0e0;
+  }
+}
+
+/* Form styling */
+.user-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  mat-form-field {
+    width: 100%;
+    
+    /* Input field styling */
+    .mat-form-field-wrapper {
+      padding-bottom: 0.5em;
+    }
+
+    /* Label styling */
+    .mat-form-field-label {
+      color: #5c6bc0;
+    }
+
+    /* Underline animation */
+    .mat-form-field-underline {
+      background-color: #c5cae9;
+    }
+
+    /* Focused state */
+    &.mat-focused {
+      .mat-form-field-label {
+        color: #3f51b5;
+      }
+      
+      .mat-form-field-ripple {
+        background-color: #3f51b5;
+      }
+    }
+  }
+
+  /* Error messages */
+  .mat-error {
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+  }
+
+  /* Character counter */
+  .mat-hint {
+    font-size: 0.75rem;
+    color: #757575;
+  }
+}
+
+/* Form actions (buttons) */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+
+  button {
+    min-width: 120px;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+
+    /* Cancel button */
+    &:first-child {
+      background-color: #f5f5f5;
+      color: #757575;
+
+      &:hover {
+        background-color: #e0e0e0;
+      }
+    }
+
+    /* Submit button */
+    &:last-child {
+      background-color: #3f51b5;
+      color: white;
+
+      &:hover {
+        background-color: #303f9f;
+      }
+
+      &:disabled {
+        background-color: #b0bec5;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .create-user-container {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+    gap: 0.75rem;
+
+    button {
+      width: 100%;
+    }
+  }
+}
+
+/* Animation for form */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.user-form {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Custom select dropdown styling */
+mat-select {
+  .mat-select-value {
+    color: #212121;
+  }
+  
+  .mat-select-arrow {
+    color: #5c6bc0;
+  }
+}
+
+/* Card-like appearance for the form */
+.form-card {
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  background-color: #fafafa;
+  border: 1px solid #e0e0e0;
+}

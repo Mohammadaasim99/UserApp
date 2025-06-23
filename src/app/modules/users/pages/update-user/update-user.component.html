@@ -1,0 +1,9 @@
+<div class="update-user-container">
+  <h2>Update User</h2>
+  
+<app-user-form 
+  [user]="user" 
+  [isEditMode]="true"
+  (formSubmit)="onSubmit($event)" 
+  (cancel)="onCancel()">
+</app-user-form>
