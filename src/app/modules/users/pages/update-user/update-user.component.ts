@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../../core/services/user.service';
 import { CountryService } from '../../../../core/services/country.service';
@@ -12,30 +11,28 @@ import { DateUtil } from '../../../../core/utils/date.utils';
   templateUrl: './update-user.component.html',
   styleUrls: ['./update-user.component.scss']
 })
-export class UpdateUserComponent  implements OnInit { 
+export class UpdateUserComponent implements OnInit {
   countries: string[] = [];
   user: any;
-  userId: string | null = null;
 
   constructor(
-    private fb: FormBuilder,
     private userService: UserService,
     private countryService: CountryService,
     private route: ActivatedRoute,
     private router: Router,
     public dateService: DateUtil
   ) {
-    
+
   }
 
   ngOnInit(): void {
-    this.userId = this.route.snapshot.paramMap.get('id');
+    const userId = this.route.snapshot.paramMap.get('id');
     this.loadCountries();
-    
-    if (this.userId) {
-      const user = this.userService.getUserById(this.userId);
+
+    if (userId) {
+      const user = this.userService.getUserById(userId);
       if (user) {
-        this.user = user;        
+        this.user = user;
       }
     }
   }
@@ -46,8 +43,8 @@ export class UpdateUserComponent  implements OnInit {
     });
   }
 
-  onSubmit(userForm:User): void {
-    if (userForm) {      
+  onSubmit(userForm: User): void {
+    if (userForm) {
       this.userService.updateUser(userForm);
       this.router.navigate(['/users']);
     }

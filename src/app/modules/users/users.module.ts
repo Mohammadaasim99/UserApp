@@ -6,8 +6,6 @@ import { RouterModule } from '@angular/router';
 import { UserListComponent } from './pages/user-list/user-list.component';
 import { CreateUserComponent } from './pages/create-user/create-user.component';
 import { UpdateUserComponent } from './pages/update-user/update-user.component';
-import { UserFilterComponent } from './components/user-filter/user-filter.component';
-import { UserGridComponent } from './components/user-grid/user-grid.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -22,8 +20,6 @@ import {MatButtonModule} from '@angular/material/button';
     UserListComponent,
     CreateUserComponent,
     UpdateUserComponent,
-    UserFilterComponent,
-    UserGridComponent,
     UserFormComponent
   ],
   imports: [

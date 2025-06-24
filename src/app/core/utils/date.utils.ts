@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DateUtil {
- formatDate(dateString: string): string {
+ public formatDate(dateString: string): string {
     if (!dateString) return '';
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', {
@@ -12,10 +12,8 @@ export class DateUtil {
       month: 'long',
       day: 'numeric',
       hour: '2-digit',
-      minute: '2-digit',
-      hour12: true
+      minute: '2-digit'
     });
   }
-
   // Add other date utilities as needed
 }

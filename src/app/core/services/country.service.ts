@@ -12,17 +12,15 @@ export class CountryService {
 
   constructor(private http: HttpClient) { }
 
-  getCountries(): Observable<string[]> {
-    if (this.cachedCountries) {
-      return of(this.cachedCountries);
-    }
-
+   public getCountries(): Observable<string[]> {
     return this.http.get<any[]>(this.API_URL).pipe(
-      map(countries => {
-        this.cachedCountries = countries.map(c => c.name.common).sort();
-        return this.cachedCountries;
-      }),
-      catchError(() => of([]))
+      map(response => 
+        response.map(country => country.name.common).sort()
+      ),
+      catchError(() => {
+        console.error('Failed to fetch countries');
+        return of([]);
+      })
     );
   }
 }
