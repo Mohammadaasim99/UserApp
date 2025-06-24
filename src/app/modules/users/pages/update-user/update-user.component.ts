@@ -12,8 +12,7 @@ import { DateUtil } from '../../../../core/utils/date.utils';
   templateUrl: './update-user.component.html',
   styleUrls: ['./update-user.component.scss']
 })
-export class UpdateUserComponent  implements OnInit {
-  userForm: FormGroup;
+export class UpdateUserComponent  implements OnInit { 
   countries: string[] = [];
   user: any;
   userId: string | null = null;
@@ -26,12 +25,7 @@ export class UpdateUserComponent  implements OnInit {
     private router: Router,
     public dateService: DateUtil
   ) {
-    this.userForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.minLength(2)]],
-      lastName: ['', [Validators.required, Validators.minLength(2)]],
-      email: [{value: '', disabled: true}],
-      country: ['', Validators.required]
-    });
+    
   }
 
   ngOnInit(): void {
@@ -41,13 +35,7 @@ export class UpdateUserComponent  implements OnInit {
     if (this.userId) {
       const user = this.userService.getUserById(this.userId);
       if (user) {
-        this.user = user;
-        this.userForm.patchValue({
-          firstName: user.firstName,
-          lastName: user.lastName,
-          email: user.email,
-          country: user.country
-        });
+        this.user = user;        
       }
     }
   }

@@ -12,7 +12,6 @@ import { User } from '../../../../core/models/user.model';
   styleUrls: ['./create-user.component.scss']
 })
 export class CreateUserComponent implements OnInit {
-  userForm: FormGroup;
   countries: string[] = [];
 
   constructor(
@@ -21,12 +20,7 @@ export class CreateUserComponent implements OnInit {
     private countryService: CountryService,
     private router: Router
   ) {
-    this.userForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.minLength(2)]],
-      lastName: ['', [Validators.required, Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.email]],
-      country: ['', Validators.required]
-    });
+    
   }
 
   ngOnInit(): void {

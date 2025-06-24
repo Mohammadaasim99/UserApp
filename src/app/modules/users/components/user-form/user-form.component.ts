@@ -39,14 +39,20 @@ export class UserFormComponent implements OnInit {
       this.userForm.patchValue({
         firstName: this.user.firstName,
         lastName: this.user.lastName,
-        email: this.isEditMode ? {value: this.user.email, disabled: true} : this.user.email,
+        email: this.user.email,
         country: this.user.country
       });
+    }
+
+    if (this.isEditMode) {
+      this.userForm.get('email')?.disable();
+    } else {
+      this.userForm.get('email')?.enable();
     }
   }
 
   loadCountries(): void {
-    this.countryService.getCountries().subscribe((countries:any) => {
+    this.countryService.getCountries().subscribe((countries: any) => {
       this.countries = countries;
     });
   }
