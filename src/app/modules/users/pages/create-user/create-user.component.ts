@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../../../core/services/user.service';
 import { CountryService } from '../../../../core/services/country.service';
@@ -15,13 +14,10 @@ export class CreateUserComponent implements OnInit {
   countries: string[] = [];
 
   constructor(
-    private fb: FormBuilder,
     private userService: UserService,
     private countryService: CountryService,
     private router: Router
-  ) {
-    
-  }
+  ) {}
 
   ngOnInit(): void {
     this.loadCountries();

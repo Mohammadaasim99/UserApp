@@ -32,11 +32,11 @@
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
       <input matInput formControlName="email" required [readonly]="isEditMode">
-      <mat-error *ngIf="userForm.get('email')?.hasError('required')">
+      <mat-error *ngIf="email?.hasError('required')">
         Email is required
       </mat-error>
-      <mat-error *ngIf="userForm.get('email')?.hasError('pattern')">
-        Please enter a valid email with domain (e.g., {{'user@example.com'}} )
+      <mat-error *ngIf="email?.hasError('pattern')">
+        Please enter a valid email with domain (e.g., {{'user@example.com'}})
       </mat-error>
     </mat-form-field>
 
@@ -44,7 +44,7 @@
     <mat-form-field appearance="outline">
       <mat-label>Country</mat-label>
       <mat-select formControlName="country" required>
-        <mat-option>-- Select Country --</mat-option>
+        <mat-option value="" disabled>-- Select Country --</mat-option>
         <mat-option *ngFor="let country of countries" [value]="country">
           {{ country }}
         </mat-option>

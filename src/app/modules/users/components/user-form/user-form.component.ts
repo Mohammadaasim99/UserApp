@@ -56,8 +56,14 @@ export class UserFormComponent implements OnInit {
   }
 
   loadCountries(): void {
-    this.countryService.getCountries().subscribe((countries: any) => {
-      this.countries = countries;
+    this.countryService.getCountries().subscribe({
+      next: (countries: string[]) => {
+        this.countries = countries;
+      },
+      error: (err) => {
+        // Handle error, e.g., show a message or fallback
+        this.countries = [];
+      }
     });
   }
 

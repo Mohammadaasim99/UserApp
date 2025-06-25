@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../../core/services/user.service';
 import { CountryService } from '../../../../core/services/country.service';
-import { User } from '../../../..//core/models/user.model';
+import { User } from '../../../../core/models/user.model';
 import { DateUtil } from '../../../../core/utils/date.utils';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-update-user',
@@ -13,7 +14,8 @@ import { DateUtil } from '../../../../core/utils/date.utils';
 })
 export class UpdateUserComponent implements OnInit {
   countries: string[] = [];
-  user: any;
+  countryLoadError: string | null = null;
+  user: User | null = null;
 
   constructor(
     private userService: UserService,
@@ -26,21 +28,31 @@ export class UpdateUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const userId = this.route.snapshot.paramMap.get('id');
+    const userId = this.route.snapshot.paramMap.get('id') || null;
     this.loadCountries();
 
     if (userId) {
-      const user = this.userService.getUserById(userId);
-      if (user) {
-        this.user = user;
+      this.user = this.userService.getUserById(userId) || null;
+      if (!this.user) {
+        // Optionally handle user not found
+        this.router.navigate(['/users']);
       }
     }
   }
 
   loadCountries(): void {
-    this.countryService.getCountries().subscribe(countries => {
-      this.countries = countries;
-    });
+    this.countryService.getCountries()
+      .pipe(take(1))
+      .subscribe({
+        next: (countries) => {
+          this.countries = countries;
+          this.countryLoadError = null;
+        },
+        error: () => {
+          this.countries = [];
+          this.countryLoadError = 'Failed to load countries. Please try again later.';
+        }
+      });
   }
 
   onSubmit(userForm: User): void {

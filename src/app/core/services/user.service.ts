@@ -11,7 +11,12 @@ export class UserService {
 
   getUsers(): User[] {
     const usersJson = localStorage.getItem(this.STORAGE_KEY);
-    return usersJson ? JSON.parse(usersJson) : [];
+    try {
+      return usersJson ? JSON.parse(usersJson) : [];
+    } catch (e) {
+      console.error('Failed to parse users from localStorage', e);
+      return [];
+    }
   }
 
   getUserById(id: string): User | undefined {
@@ -41,6 +46,10 @@ export class UserService {
   }
 
   private generateId(): string {
-    return Math.random().toString(36).substring(2, 15);
+    // Simple UUID v4 generator
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+      const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
   }
 }
